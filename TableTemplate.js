@@ -6,6 +6,14 @@ class TableTemplate {
         console.error(`Table with id '${tableId}' not found.`);
         return;
       }
+
+      const replaceTemplateStrings = (cell, dictionaryData) => {
+        const cellText = cell.textContent.trim();
+        const templateInstance = new TemplateProcessor(cellText);
+        const templateString = templateInstance.fillIn(dictionaryData);
+        cell.textContent = templateString;
+      }
+
       const headerRow = table.rows[0];
       const columnIndexMap = {};
       for (let i = 0; i < headerRow.cells.length; i++) {
