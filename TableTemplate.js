@@ -6,7 +6,6 @@ class TableTemplate {
         console.error(`Table with id '${tableId}' not found.`);
         return;
       }
-
       const replaceTemplateStrings = (cell, dictionaryData) => {
         const cellText = cell.textContent.trim();
         const templateInstance = new TemplateProcessor(cellText);
@@ -20,25 +19,23 @@ class TableTemplate {
         replaceTemplateStrings(cell, dictionaryData)
         columnIndexMap[cell.textContent.trim()] = i;
       }
-        for (let rowIdx = 1; rowIdx < table.rows.length; rowIdx++) 
-{ 
+      for (let rowIdx = 1; rowIdx < table.rows.length; rowIdx++) { 
 	const row = table.rows[rowIdx]; 
 	if (columnName) {
-		let cell = row.cells[columnIndexMap[columnName]]; 
-		if(cell) { 	
-			replaceTemplateStrings(cell, dictionaryData)
-		} 
+	  let cell = row.cells[columnIndexMap[columnName]]; 
+	  if(cell) { 	
+	    replaceTemplateStrings(cell, dictionaryData)
+	  } 
 	} 
 	else { 
-		// Processing all cells in the row 
-		for (let cellIdx = 0; cellIdx < row.cells.length; cellIdx++) {
-			let cell = row.cells[cellIdx];
-			replaceTemplateStrings(cell, dictionaryData);
-		} 
+	  // Processing all cells in the row 
+	  for (let cellIdx = 0; cellIdx < row.cells.length; cellIdx++) {
+	    let cell = row.cells[cellIdx];
+	    replaceTemplateStrings(cell, dictionaryData);
+	  } 
 	} 
-}
+      }
       table.style.visibility = "visible";
-      
     }
   }
 
