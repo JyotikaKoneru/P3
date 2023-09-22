@@ -13,7 +13,6 @@ class TableTemplate {
         const templateString = templateInstance.fillIn(dictionaryData);
         cell.textContent = templateString;
       }
-
       const headerRow = table.rows[0];
       const columnIndexMap = {};
       for (let i = 0; i < headerRow.cells.length; i++) {
@@ -21,6 +20,23 @@ class TableTemplate {
         replaceTemplateStrings(cell, dictionaryData)
         columnIndexMap[cell.textContent.trim()] = i;
       }
+        for (let rowIdx = 1; rowIdx < table.rows.length; rowIdx++) 
+{ 
+	const row = table.rows[rowIdx]; 
+	if (columnName) {
+		let cell = row.cells[columnIndexMap[columnName]]; 
+		if(cell) { 	
+			replaceTemplateStrings(cell, dictionaryData)
+		} 
+	} 
+	else { 
+		// Processing all cells in the row 
+		for (let cellIdx = 0; cellIdx < row.cells.length; cellIdx++) {
+			let cell = row.cells[cellIdx];
+			replaceTemplateStrings(cell, dictionaryData);
+		} 
+	} 
+}
       table.style.visibility = "visible";
       
     }
