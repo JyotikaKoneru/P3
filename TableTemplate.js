@@ -6,31 +6,31 @@ class TableTemplate {
         console.error(`Table with id '${tableId}' not found.`);
         return;
       }
-      const replaceTemplateStrings = (cell, dictionaryData) => {
+      const replaceTemplateStrings = (cell) => {
         const cellText = cell.textContent.trim();
         const templateInstance = new TemplateProcessor(cellText);
         const templateString = templateInstance.fillIn(dictionaryData);
         cell.textContent = templateString;
-      }
+      };
       const headerRow = table.rows[0];
       const columnIndexMap = {};
       for (let i = 0; i < headerRow.cells.length; i++) {
-        let cell = headerRow.cells[i];
-        replaceTemplateStrings(cell, dictionaryData)
+        const cell = headerRow.cells[i];
+        replaceTemplateStrings(cell, dictionaryData);
         columnIndexMap[cell.textContent.trim()] = i;
       }
       for (let rowIdx = 1; rowIdx < table.rows.length; rowIdx++) { 
 	const row = table.rows[rowIdx]; 
 	if (columnName) {
-	  let cell = row.cells[columnIndexMap[columnName]]; 
+	  const cell = row.cells[columnIndexMap[columnName]]; 
 	  if(cell) { 	
-	    replaceTemplateStrings(cell, dictionaryData)
+	    replaceTemplateStrings(cell, dictionaryData);
 	  } 
 	} 
 	else { 
 	  // Processing all cells in the row 
 	  for (let cellIdx = 0; cellIdx < row.cells.length; cellIdx++) {
-	    let cell = row.cells[cellIdx];
+	    const cell = row.cells[cellIdx];
 	    replaceTemplateStrings(cell, dictionaryData);
 	  } 
 	} 
