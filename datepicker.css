@@ -1,0 +1,122 @@
+/* Styles for the date picker */
+
+/*row data - td*/
+/*calender table - table*/
+
+
+table {
+  border: black solid 1px;
+}
+td.not-in-month{
+  background-color: transparent;
+}
+td.not-in-month:hover {
+  cursor: default;
+  background-color: transparent;
+  color: black;
+}
+td {
+  text-align: center;
+  width: 25px;
+  height: 25px;
+  background-color: whitesmoke;
+  margin: 1px;
+}
+.day-cell {
+  font-weight: bold;
+  padding: 0px;
+}
+td:hover, .month-selector:hover {
+  cursor: pointer;
+  background-color: yellow;
+  color: goldenrod;
+}
+
+
+
+#datepicker1{
+  border: black solid 1px;
+  max-width: 250px;
+}
+
+#datepicker2{
+  border: black solid 1px;
+  max-width: 250px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    max-width: 700px;
+    
+  }
+  
+  .calendar-header button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    outline: none;
+  }
+  
+  .calendar-header .month-year {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .day-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: #f0f0f0;
+    padding: 10px 0;
+    text-align: center;
+    width: 250px;
+  }
+  
+  
+  
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0px;
+    width: 25px;
+  }
+  
+  .date-cell {
+    text-align: center;
+    padding:5px;
+    width: 25px;
+    cursor: pointer;
+    /*border: 1px solid #ccc;*/
+  }
+ 
+  .date-cell:hover {
+    cursor: pointer;
+    background-color: yellow;
+    color: goldenrod;
+  }
+
+  .date-cell.inactive {
+    color: #ccc;
+    cursor: not-allowed;
+    background-color: white;
+  }
+  
+  
+  .date-cell.selected {
+    background-color: yellow;
+    color: #fff;
+    border: 1px solid yellow;
+  }
+  
+  /* Additional styling can be added here */
+  
+  /* Clearfix for float containers */
+  .clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
