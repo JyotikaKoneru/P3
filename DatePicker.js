@@ -50,7 +50,7 @@ class DatePicker {
       const selectedYear = selectedMonth.getFullYear();
       const selectedMonthIndex = selectedMonth.getMonth();
       const firstDayOfMonth = new Date(selectedYear, selectedMonthIndex, 1);
-      const firstDayOfWeek = firstDayOfMonth.getDay(); // 0 for Sunday, 1 for Monday, etc.
+      const firstDayOfWeek = firstDayOfMonth.getDay(); 
       const lastDayOfMonth = new Date(selectedYear, selectedMonthIndex + 1, 0);
       const daysInMonth = lastDayOfMonth.getDate();
       
@@ -99,9 +99,6 @@ class DatePicker {
     }
   
     prevMonth(selectedMonth) {
-      //this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() - 1);
-      //this.render(this.currentDate);
-
       this.currentDate.setMonth(this.currentDate.getMonth() - 1);
       this.render(this.currentDate);
     }
@@ -149,11 +146,10 @@ class DatePicker {
       const selectedYear = selectedMonth.getFullYear();
       const selectedMonthIndex = selectedMonth.getMonth();
       const firstDayOfMonth = new Date(selectedYear, selectedMonthIndex, 1);
-      const firstDayOfWeek = firstDayOfMonth.getDay(); // 0 for Sunday, 1 for Monday, etc.
+      const firstDayOfWeek = firstDayOfMonth.getDay(); 
       const lastDayOfMonth = new Date(selectedYear, selectedMonthIndex + 1, 0);
       const daysInMonth = lastDayOfMonth.getDate();
-      
-      // Calculate the date of the last day of the previous month
+    
       const lastDayOfPreviousMonth = new Date(selectedYear, selectedMonthIndex, 0);
       const daysInPreviousMonth = lastDayOfPreviousMonth.getDate();
       
@@ -189,46 +185,24 @@ class DatePicker {
     handleDateClick2(day, selectedMonth) {
       if (!day || day < 1) return;
       this.selectedDate = {
-        //month: this.currentDate.getMonth() + 1,
         month: selectedMonth.getMonth() + 1,
         day,
-        //year: this.currentDate.getFullYear(),
         year: selectedMonth.getFullYear(),
       };
       this.dateSelectedCallback(this.divId, this.selectedDate);
-      //this.render2(new Date(this.currentDate.getFullYear(), this.currentDate.getMonth()));
       this.render2(new Date(selectedMonth.getFullYear(), selectedMonth.getMonth()));
     }
   
     prevMonth2(selectedMonth) {
-      //this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() - 1);
-      //this.render(this.currentDate);
-
-      //console.log(selectedMonth);
-
       const selectedMonth2 = new Date(selectedMonth);
-      //console.log(selectedMonth2);
-
       selectedMonth2.setMonth(selectedMonth2.getMonth() - 1);
       this.render2(selectedMonth2);
-      //this.currentDate.setMonth(this.currentDate.getMonth() - 1);
-      //this.render2(this.currentDate);
 
     }
   
     nextMonth2(selectedMonth) {
-      //this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1);
-
-      //console.log(selectedMonth);
-      //console.log(this.currentDate);
-      
-      //selectedMonth.setMonth(selectedMonth.getMonth() + 1);
-      //this.currentDate.setMonth(this.currentDate.getMonth() - 1);
       const selectedMonth2 = new Date(selectedMonth);
-      //console.log(selectedMonth2);
-
       selectedMonth2.setMonth(selectedMonth2.getMonth() + 1);
-      //this.render2(this.currentDate);
       this.render2(selectedMonth2);
     }
 
