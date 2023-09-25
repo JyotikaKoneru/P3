@@ -98,12 +98,12 @@ class DatePicker {
       this.render(new Date(this.currentDate.getFullYear(), this.currentDate.getMonth()));
     }
   
-    prevMonth(selectedMonth) {
+    prevMonth() {
       this.currentDate.setMonth(this.currentDate.getMonth() - 1);
       this.render(this.currentDate);
     }
   
-    nextMonth(selectedMonth) {
+    nextMonth() {
       
       this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1);
       this.render(this.currentDate);
