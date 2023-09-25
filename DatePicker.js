@@ -1,3 +1,5 @@
+'use strict';
+
 class DatePicker {
     constructor(divId, dateSelectedCallback) {
       this.divId = divId;
@@ -23,9 +25,9 @@ class DatePicker {
       const header = document.createElement('div');
       header.className = 'calendar-header';
       header.innerHTML = `
-        <button class="prev-month" onclick="datePicker1.prevMonth()">&#60;</button>
+        <button class="prev-month" onclick="datePicker1.prevMonth('selectedMonth')">&#60;</button>
         <div class="month-year">${this.monthNames[selectedMonth.getMonth()]} ${selectedMonth.getFullYear()}</div>
-        <button class="next-month" onclick="datePicker1.nextMonth()">&#62;</button>
+        <button class="next-month" onclick="datePicker1.nextMonth('selectedMonth')">&#62;</button>
       `;
       calendarDiv.appendChild(header);
   
@@ -96,7 +98,7 @@ class DatePicker {
       this.render(new Date(this.currentDate.getFullYear(), this.currentDate.getMonth()));
     }
   
-    prevMonth() {
+    prevMonth(selectedMonth) {
       //this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() - 1);
       //this.render(this.currentDate);
 
@@ -104,15 +106,17 @@ class DatePicker {
       this.render(this.currentDate);
     }
   
-    nextMonth() {
+    nextMonth(selectedMonth) {
+      
       this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1);
       this.render(this.currentDate);
     }
 
 
-
-
     render2(selectedMonth) {
+
+      //console.log(selectedMonth);
+
       const calendarDiv = document.getElementById(this.divId);
       calendarDiv.innerHTML = '';
   
@@ -120,9 +124,9 @@ class DatePicker {
       const header = document.createElement('div');
       header.className = 'calendar-header';
       header.innerHTML = `
-        <button class="prev-month" onclick="datePicker2.prevMonth2()">&#60;</button>
+        <button class="prev-month" onclick="datePicker2.prevMonth2(${selectedMonth.getTime()})">&#60;</button>
         <div class="month-year">${this.monthNames[selectedMonth.getMonth()]} ${selectedMonth.getFullYear()}</div>
-        <button class="next-month" onclick="datePicker2.nextMonth2()">&#62;</button>
+        <button class="next-month" onclick="datePicker2.nextMonth2(${selectedMonth.getTime()})">&#62;</button>
       `;
       calendarDiv.appendChild(header);
   
@@ -174,7 +178,7 @@ class DatePicker {
           dateCell.classList.add('selected');
         }
       
-        dateCell.addEventListener('click', () => this.handleDateClick2(day));
+        dateCell.addEventListener('click', () => this.handleDateClick2(day, selectedMonth));
       
         calendarGrid.appendChild(dateCell);
       }
@@ -182,28 +186,50 @@ class DatePicker {
       calendarDiv.appendChild(calendarGrid);
     }
 
-    handleDateClick2(day) {
+    handleDateClick2(day, selectedMonth) {
       if (!day || day < 1) return;
       this.selectedDate = {
-        month: this.currentDate.getMonth() + 1,
+        //month: this.currentDate.getMonth() + 1,
+        month: selectedMonth.getMonth() + 1,
         day,
-        year: this.currentDate.getFullYear(),
+        //year: this.currentDate.getFullYear(),
+        year: selectedMonth.getFullYear(),
       };
       this.dateSelectedCallback(this.divId, this.selectedDate);
-      this.render2(new Date(this.currentDate.getFullYear(), this.currentDate.getMonth()));
+      //this.render2(new Date(this.currentDate.getFullYear(), this.currentDate.getMonth()));
+      this.render2(new Date(selectedMonth.getFullYear(), selectedMonth.getMonth()));
     }
   
-    prevMonth2() {
+    prevMonth2(selectedMonth) {
       //this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() - 1);
       //this.render(this.currentDate);
 
-      this.currentDate.setMonth(this.currentDate.getMonth() - 1);
-      this.render2(this.currentDate);
+      //console.log(selectedMonth);
+
+      const selectedMonth2 = new Date(selectedMonth);
+      //console.log(selectedMonth2);
+
+      selectedMonth2.setMonth(selectedMonth2.getMonth() - 1);
+      this.render2(selectedMonth2);
+      //this.currentDate.setMonth(this.currentDate.getMonth() - 1);
+      //this.render2(this.currentDate);
+
     }
   
-    nextMonth2() {
-      this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1);
-      this.render2(this.currentDate);
+    nextMonth2(selectedMonth) {
+      //this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1);
+
+      //console.log(selectedMonth);
+      //console.log(this.currentDate);
+      
+      //selectedMonth.setMonth(selectedMonth.getMonth() + 1);
+      //this.currentDate.setMonth(this.currentDate.getMonth() - 1);
+      const selectedMonth2 = new Date(selectedMonth);
+      //console.log(selectedMonth2);
+
+      selectedMonth2.setMonth(selectedMonth2.getMonth() + 1);
+      //this.render2(this.currentDate);
+      this.render2(selectedMonth2);
     }
 
   }
